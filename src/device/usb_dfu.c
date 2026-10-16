@@ -229,9 +229,8 @@ static int parse_hex_field(const char *serial, const char *key, uint64_t *out)
         return -1;
     }
 
-    while (*endptr == ' ' || *endptr == '\t' || *endptr == '\r' || *endptr == '\n')
-        endptr++;
-    if (*endptr != '\0') {
+    if (*endptr != '\0' && *endptr != ' ' && *endptr != '\t' &&
+        *endptr != '\r' && *endptr != '\n') {
         log_warn("parse_hex_field: trailing junk after key '%s'", key);
         *out = 0;
         return -1;
